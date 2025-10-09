@@ -2,6 +2,29 @@
 require_once 'config/database.php';
 require_once 'config/session.php';
 
+// Mode développement : si true, on effectue un auto-login sur le premier compte 'coordinateur'.
+// NE PAS ACTIVER EN PRODUCTION.
+define('DEV_AUTO_LOGIN', true);
+
+if (DEV_AUTO_LOGIN) {
+    try {
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->query("SELECT * FROM compte WHERE role = 'coordinateur' LIMIT 1");
+        $devUser = $stmt->fetch();
+        if ($devUser) {
+            $_SESSION['user_id'] = $devUser['idCompte'];
+            $_SESSION['email'] = $devUser['Email'];
+            $_SESSION['nom'] = $devUser['Nom'] ?? '';
+            $_SESSION['prenom'] = $devUser['Prenom'] ?? '';
+            $_SESSION['role'] = $devUser['role'];
+            header('Location: pages/dashboard.php');
+            exit();
+        }
+    } catch (PDOException $e) {
+        // En dev, on peut ignorer l'erreur ou logger si besoin
+    }
+}
+
 // Si l'utilisateur est déjà connecté, rediriger vers le dashboard
 if (isCoordinateur()) {
     header('Location: pages/dashboard.php');
@@ -20,19 +43,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare("SELECT * FROM Coordinateur WHERE EmailCord = ?");
+
+            // Utiliser la table `compte` avec les colonnes : idCompte, Email, Password, role
+            $stmt = $db->prepare("SELECT * FROM compte WHERE Email = ?");
             $stmt->execute([$email]);
             $user = $stmt->fetch();
-            
-            // Vérifier les identifiants
-            if ($user && password_verify($password, $user['MotPass'])) {
-                // Créer la session
-                $_SESSION['user_id'] = $user['idCoord'];
-                $_SESSION['email'] = $user['EmailCord'];
-                $_SESSION['nom'] = $user['NomCord'];
-                $_SESSION['prenom'] = $user['PrenomCord'];
-                $_SESSION['role'] = 'coordinateur';
-                
+
+            // Vérifier les identifiants et que le rôle est bien 'coordinateur'
+            if ($user && password_verify($password, $user['Password']) && isset($user['role']) && $user['role'] === 'coordinateur') {
+                // Créer la session (adapter les noms de champs existants)
+                $_SESSION['user_id'] = $user['idCompte'];
+                $_SESSION['email'] = $user['Email'];
+                // La table `compte` n'a pas Nom/Prenom ; laisser vides si absent
+                $_SESSION['nom'] = $user['Nom'] ?? '';
+                $_SESSION['prenom'] = $user['Prenom'] ?? '';
+                $_SESSION['role'] = $user['role'];
+
                 // Rediriger vers le tableau de bord
                 header('Location: pages/dashboard.php');
                 exit();
@@ -52,77 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion Coordinateur - UniClub</title>
     <link rel="stylesheet" href="assets/css/coordinateur.css">
-    <style>
-        .login-container {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-header h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .error-message {
-            color: #dc3545;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .btn-login {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .btn-login:hover {
-            background: #0056b3;
-        }
-        
-        .login-links {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .login-links a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        
-        .login-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
     <div class="login-container">

@@ -9,7 +9,6 @@ $db = Database::getInstance()->getConnection();
 $stats = [
     'total_clubs' => 0,
     'total_evenements' => 0,
-    'total_participants' => 0,
     'evenements_a_venir' => 0
 ];
 
@@ -21,21 +20,19 @@ $stats['total_clubs'] = $stmt->fetch()['count'];
 $stmt = $db->query("SELECT COUNT(*) as count FROM Evenement");
 $stats['total_evenements'] = $stmt->fetch()['count'];
 
-// Nombre total de participants
-$stmt = $db->query("SELECT COUNT(DISTINCT EmailParti) as count FROM Participant");
-$stats['total_participants'] = $stmt->fetch()['count'];
-
 // Événements à venir
 $stmt = $db->query("SELECT COUNT(*) as count FROM Evenement WHERE dateDebut >= CURDATE() AND Statut = 'planifié'");
 $stats['evenements_a_venir'] = $stmt->fetch()['count'];
 
 // Événements récents
 $stmt = $db->query("
-    SELECT e.*, c.NomClub, o.NomOrg, o.PrenomOrg,
-           (SELECT COUNT(*) FROM inscri WHERE Idenv = e.Idenv) as nb_inscrits
+    SELECT e.*, c.NomClub, co.Email AS OrgEmail, p.Nom AS NomOrg, p.Prenom AS PrenomOrg,
+        (SELECT COUNT(*) FROM inscri WHERE Idenv = e.Idenv) as nb_inscrits
     FROM Evenement e
     LEFT JOIN Club c ON e.idClub = c.idClub
-    LEFT JOIN Organisateur o ON e.EmailOrg = o.EmailOrg
+    LEFT JOIN Organisateur o ON e.idOrganisateur = o.idCompte
+    LEFT JOIN Compte co ON o.idCompte = co.idCompte
+    LEFT JOIN Participant p ON o.idCompte = p.idCompte
     ORDER BY e.dateDebut DESC
     LIMIT 5
 ");
@@ -62,14 +59,6 @@ $evenements_recents = $stmt->fetchAll();
         </div>
         
         <div class="stat-card">
-            <div class="stat-icon participants">🎓</div>
-            <div class="stat-info">
-                <h3><?php echo $stats['total_participants']; ?></h3>
-                <p>Participants</p>
-            </div>
-        </div>
-        
-        <div class="stat-card">
             <div class="stat-icon upcoming">⏰</div>
             <div class="stat-info">
                 <h3><?php echo $stats['evenements_a_venir']; ?></h3>
@@ -86,9 +75,9 @@ $evenements_recents = $stmt->fetchAll();
                 <thead>
                     <tr>
                         <th>Événement</th>
-                        <th>Club</th>
-                        <th>Organisateur</th>
+                        <th>Club Organisateur</th>
                         <th>Date</th>
+                        <th>Lieu</th>
                         <th>Inscrits</th>
                         <th>Statut</th>
                         <th>Actions</th>
@@ -106,8 +95,8 @@ $evenements_recents = $stmt->fetchAll();
                                 <strong><?php echo htmlspecialchars($event['NomEnv']); ?></strong>
                             </td>
                             <td><?php echo htmlspecialchars($event['NomClub'] ?? 'N/A'); ?></td>
-                            <td><?php echo htmlspecialchars($event['PrenomOrg'] . ' ' . $event['NomOrg']); ?></td>
                             <td><?php echo date('d/m/Y', strtotime($event['dateDebut'])); ?></td>
+                            <td><?php echo htmlspecialchars($event['Lieu'] ?? 'N/A'); ?></td>
                             <td>
                                 <span class="badge badge-info">
                                     <?php echo $event['nb_inscrits'] . '/' . ($event['Capacite'] ?? '∞'); ?>

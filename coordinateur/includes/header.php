@@ -13,7 +13,7 @@ $flashMessage = getFlashMessage();
     <title><?php echo $pageTitle ?? 'Coordinateur'; ?> - UniClub</title>
     <link rel="stylesheet" href="../assets/css/coordinateur.css">
 </head>
-<body>
+<body class="no-sidebar">
     <div class="layout">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -53,7 +53,19 @@ $flashMessage = getFlashMessage();
         <!-- Main Content -->
         <main class="main-content">
             <header class="top-bar">
-                <h1><?php echo $pageTitle ?? 'Tableau de bord'; ?></h1>
+                <div class="brand">
+                    <div class="brand-logo">👤</div>
+                    <div class="brand-text">
+                        <div class="brand-name">UniClub</div>
+                        <div class="brand-sub">Gestion unifiée des clubs et événements</div>
+                    </div>
+                </div>
+                <div class="top-actions">
+                    <a href="dashboard.php" class="pill-btn">Dashboard</a>
+                    <a href="clubs.php" class="pill-btn">Gérer les clubs</a>
+                    <a href="send_email.php" class="pill-btn">Envoyer un email</a>
+                    <a href="../logout.php" class="pill-btn pill-outline">Déconnexion</a>
+                </div>
             </header>
             
             <!-- Messages flash -->

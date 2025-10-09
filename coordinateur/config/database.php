@@ -1,7 +1,7 @@
 <?php
 // Configuration de la connexion à la base de données
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'uniclub');
+define('DB_NAME', 'uniclubs');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
