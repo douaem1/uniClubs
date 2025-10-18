@@ -1,0 +1,138 @@
+:root {
+  --violet-600: #6f42c1;
+  --violet-700: #5a34a1;
+  --violet-100: #efe7fb;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.popup-content p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1.1rem;
+    line-height: 1.5;
+}
+
+.popup.active {
+  display: flex;
+}
+.popup-content {
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+}
+
+
+.profile-container {
+  max-width: 720px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  padding: 1.5rem;
+}
+
+.greeting-title {
+  font-size: 1.35rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.greeting-title .greeting-name {
+  color: var(--violet-600);
+}
+
+.profile-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #faf9ff;
+  border: 1px solid #f0eaff;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.profile-label {
+  min-width: 110px;
+  font-weight: 600;
+  color: #555;
+}
+
+.btn-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.btn.btn-primary {
+  background-color: var(--violet-600);
+  border-color: var(--violet-600);
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
+  background-color: var(--violet-700);
+  border-color: var(--violet-700);
+}
+
+/* Secondary button align with theme */
+.btn.btn-secondary {
+  background-color: #fff;
+  color: var(--violet-600);
+  border-color: var(--violet-600);
+}
+
+.btn.btn-secondary:hover,
+.btn.btn-secondary:focus {
+  background-color: var(--violet-100);
+  color: var(--violet-700);
+  border-color: var(--violet-700);
+}
+
+/* Inputs focus with subtle violet glow */
+.form-control:focus,
+.form-check-input:focus {
+  border-color: var(--violet-600);
+  box-shadow: 0 0 0 0.2rem rgba(111,66,193,0.15);
+}
+
+/* Make the danger button match the theme but outlined */
+.btn.btn-danger {
+  background-color: transparent;
+  color: var(--violet-600);
+  border-color: var(--violet-600);
+}
+
+.btn.btn-danger:hover,
+.btn.btn-danger:focus {
+  background-color: var(--violet-100);
+  color: var(--violet-700);
+  border-color: var(--violet-700);
+}
+
+/* Popup buttons within the confirmation dialog */
+#delete-popup .btn.btn-danger {
+  background-color: var(--violet-600);
+  color: #fff;
+  border-color: var(--violet-600);
+}
+
+#delete-popup .btn.btn-danger:hover,
+#delete-popup .btn.btn-danger:focus {
+  background-color: var(--violet-700);
+  border-color: var(--violet-700);
+}

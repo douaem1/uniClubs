@@ -1,0 +1,185 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 90px;
+}
+
+/* Container principal du formulaire */
+.container {
+    max-width: 500px;
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header du formulaire */
+.form-header {
+    padding: 30px 30px 20px 30px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.form-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666666;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #f5f5f5;
+    color: #333333;
+}
+
+/* Formulaire */
+form {
+    padding: 30px;
+}
+
+/* Groupes de champs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Labels */
+.form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #e74c3c;
+}
+
+/* Champs de saisie */
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333333;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: #8B5CF6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.form-control::placeholder {
+    color: #9CA3AF;
+    font-style: normal;
+}
+
+/* Bouton de soumission */
+.btn-submit {
+    width: 100%;
+    background: #8B5CF6;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+    .form-header,
+    form {
+        padding: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+/* Animation d'entrée */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: slideIn 0.5s ease-out;
+}

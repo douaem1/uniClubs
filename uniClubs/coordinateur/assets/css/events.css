@@ -1,0 +1,468 @@
+/* Events Page Styles - Light Pastel Design */
+
+/* Events supervision layout */
+.evenements-supervision {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Page header with stats */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.page-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* Stats summary badges - using dashboard styles */
+.stats-summary {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Filters section - integrated in card */
+.card-body.bg-white {
+    background: #FFFFFF !important;
+}
+
+.filters-form {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 1rem;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.875rem;
+}
+
+.filter-group input,
+.filter-group select {
+    padding: 0.625rem 0.875rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    background: #FFFFFF;
+    color: #111827;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+
+.btn-secondary-modern {
+    background: #F5F3FF;
+    color: #7C3AED;
+    border: 1px solid #EDE9FE;
+    padding: 0.625rem 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.btn-secondary-modern:hover {
+    background: #7C3AED;
+    color: white;
+    border-color: #7C3AED;
+    transform: translateY(-1px);
+}
+
+/* Table uses dashboard.css styles */
+.text-primary {
+    color: #7C3AED !important;
+}
+
+/* Event info - no thumbnail in table */
+.event-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Badges - using dashboard styles */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Action buttons - using dashboard.css styles */
+.action-buttons-modern {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 50;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background: #FFFFFF;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border: 1px solid #E5E7EB;
+}
+
+.modal-large {
+    max-width: 800px;
+}
+
+.modal .close {
+    float: right;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #666;
+    line-height: 1;
+    margin-top: -0.5rem;
+}
+
+.modal .close:hover {
+    color: #333;
+}
+
+/* Event Details Modal Styles */
+.event-details-modal {
+    max-width: 900px;
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+.event-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #F5F3FF;
+}
+
+.event-details-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #7C3AED;
+    margin: 0;
+}
+
+.event-image-section {
+    margin-bottom: 2rem;
+}
+
+.event-main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border: 1px solid #E5E7EB;
+}
+
+.event-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.event-detail-item {
+    margin-bottom: 1rem;
+}
+
+.event-detail-label {
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.event-detail-value {
+    font-size: 1rem;
+    color: #111827;
+    font-weight: 600;
+}
+
+.event-status-section {
+    margin-bottom: 2rem;
+}
+
+.event-status-title {
+    font-size: 1rem;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.event-status-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.event-status-badge.non-sature {
+    background: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #6EE7B7;
+}
+
+.event-status-badge.sature {
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
+}
+
+.event-status-badge.en-attente {
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+}
+
+.event-description-section {
+    margin-bottom: 2rem;
+}
+
+.event-description-title {
+    font-size: 1rem;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.event-description {
+    color: #6B7280;
+    line-height: 1.6;
+    background: #F9FAFB;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid #7C3AED;
+}
+
+.event-validation-section {
+    margin-bottom: 1rem;
+}
+
+.event-validation-title {
+    font-size: 1rem;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.event-validation-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.event-validation-badge.pending {
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+}
+
+.event-validation-badge.validated {
+    background: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #6EE7B7;
+}
+
+.event-validation-badge.refused {
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
+}
+
+/* Responsive for event details modal */
+@media (max-width: 768px) {
+    .event-details-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .event-main-image {
+        height: 200px;
+    }
+    
+    .event-details-modal {
+        max-width: 95vw;
+        margin: 0.5rem;
+    }
+}
+
+/* Form styles */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    background: #FFFFFF;
+    color: #111827;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #F5F3FF;
+}
+
+.modal-header h2 {
+    color: #111827;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .evenements-supervision {
+        padding: 1rem;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .stats-summary {
+        justify-content: center;
+    }
+    
+    .filters-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .btn-action {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .data-table {
+        font-size: 0.8rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-summary {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .stat-badge {
+        text-align: center;
+    }
+}

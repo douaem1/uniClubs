@@ -1,0 +1,123 @@
+/* Container */
+.detail-container {
+  max-width: 650px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* Card */
+.detail-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Header */
+.detail-header {
+  padding: 16px 20px 16px 20px; /* more space under the title */
+}
+
+.detail-title {
+  margin: 0;
+  font-size: 24px;
+  color: #8A2BE2;
+  font-weight: 800;
+}
+
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666666;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #f5f5f5;
+    color: #333333;
+}
+
+/* Cover image */
+.detail-cover {
+  padding: 0 20px 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-cover img {
+  width: 95%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Grid */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 28px;
+  padding: 8px 20px 20px 20px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-label {
+  color: #6b7280; /* gray-500 */
+  font-size: 14px;
+}
+
+.detail-value {
+  color: #111827; /* gray-900 */
+  font-weight: 600;
+}
+
+
+/* Actions */
+.detail-actions {
+  padding: 12px 20px 20px 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: #8A2BE2;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: #4c1d95; }
+
+.btn-disabled {
+  background: #e5e7eb;
+  color: #6b7280;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detail-grid { grid-template-columns: 1fr; }
+  .detail-cover img { height: 200px; }
+}
