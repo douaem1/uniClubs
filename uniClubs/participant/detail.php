@@ -33,8 +33,8 @@
     <button type="button" class="close-btn" onclick="window.history.back()">&times;</button> 
         <div class="detail-header">
             <h2 class="detail-title"><i class="bi bi-bookmarks"></i>
-                <?php echo htmlspecialchars($event['NomEnv']); ?>
-            </h2>   
+                <?php echo htmlspecialchars($event['NomEnv']);?>
+            </h2>  
         </div>
 
         <div class="detail-cover">
